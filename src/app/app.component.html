@@ -3,6 +3,7 @@
 </header>
 
 <content>
+  <time-period-selector (modelChange)="dataService.timePeriod = $event"></time-period-selector>
 
   <div class="chart">
     <ngx-charts-area-chart

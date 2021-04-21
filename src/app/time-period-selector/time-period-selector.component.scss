@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+span {
+  color: #1890ff;
+  background-color: transparent;
+  transition: color .3s;
+  cursor: pointer;
+
+  &.selected,
+  &:hover {
+    border-bottom: 1px solid #1890ff;
+  }
+}

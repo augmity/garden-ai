@@ -1,0 +1,11 @@
+<span [ngClass]="{'selected': model === 'day'}" (click)="setModel('day')">day</span>
+<nz-divider nzType="vertical"></nz-divider>
+<span [ngClass]="{'selected': model === '3days'}" (click)="setModel('3days')">3 days</span>
+<nz-divider nzType="vertical"></nz-divider>
+<span [ngClass]="{'selected': model === 'week'}" (click)="setModel('week')">week</span>
+<nz-divider nzType="vertical"></nz-divider>
+<span [ngClass]="{'selected': model === 'month'}" (click)="setModel('month')">month</span>
+<nz-divider nzType="vertical"></nz-divider>
+<span [ngClass]="{'selected': model === 'year'}" (click)="setModel('year')">year</span>
+<nz-divider nzType="vertical"></nz-divider>
+<span [ngClass]="{'selected': model === 'all'}" (click)="setModel('all')">all</span>

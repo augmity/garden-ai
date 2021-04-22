@@ -11,13 +11,16 @@ import { TimePeriodType } from './time-period-selector';
 })
 export class DataService {
 
+  // private getUri = 'http://localhost:7071/api/GetGardenSensorData?';
+  private getUri = 'https://agm-sensor-backend.azurewebsites.net/api/GetGardenSensorData?code=AhaWeqoVfzHvXViG1/2jGn9ImyL3Tp5j/60xetHWsnmH9u9Zd9XLfw==';
+
   private timePeriod$ = new BehaviorSubject<TimePeriodType>('day');
   sensorsData$ = this.timePeriod$
     .pipe(
       switchMap(timePeriod => {
         console.log('timePeriod', timePeriod);
         return this.http
-          .get<SensorsData[]>('https://agm-sensor-backend.azurewebsites.net/api/GetGardenSensorData?code=AhaWeqoVfzHvXViG1/2jGn9ImyL3Tp5j/60xetHWsnmH9u9Zd9XLfw==');
+          .get<SensorsData[]>(this.getUri + `&timePeriod=${timePeriod}`);
       }),
       shareReplay(1)
     );

@@ -20,6 +20,20 @@
       [legend]="false"
       legendPosition="below"
     >
+      <ng-template #tooltipTemplate let-model="model">
+        <div class="tooltip">
+          <div>{{ model.name | date:'yyyy-MM-dd hh:mm:ss' }}</div>
+          <div style="font-size: 16px">{{ model.value }} lux</div>
+        </div>
+      </ng-template>
+
+      <ng-template #seriesTooltipTemplate let-model="model">
+        <div class="tooltip">
+          <div>{{ model[0].name | date:'yyyy-MM-dd hh:mm:ss' }}</div>
+          <div style="font-size: 16px">{{ model[0].value }} lux</div>
+        </div>
+      </ng-template>
+
     </ngx-charts-area-chart>
   </div>
 

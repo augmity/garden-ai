@@ -12,8 +12,8 @@
       showYAxisLabel="true"
       xAxis="true"
       yAxis="true"
-      yAxisLabel="lux"
-      [results]="chartData"
+      yAxisLabel="Light (lux)"
+      [results]="lightChartData"
       autoScale="true"
       [showGridLines]="false"
       [gradient]="true"
@@ -37,18 +37,53 @@
     </ngx-charts-area-chart>
   </div>
 
+  <div class="chart">
+    <ngx-charts-area-chart
+      [scheme]="{ domain: ['#52c41a'] }"
+      legend="true"
+      showYAxisLabel="true"
+      xAxis="true"
+      yAxis="true"
+      yAxisLabel="Soil Moisture"
+      [results]="soilMoistureChartData"
+      autoScale="true"
+      [showGridLines]="false"
+      [gradient]="true"
+      [legend]="false"
+      legendPosition="below"
+    >
+      <ng-template #tooltipTemplate let-model="model">
+        <div class="tooltip">
+          <div>{{ model.name | date:'yyyy-MM-dd hh:mm:ss' }}</div>
+          <div style="font-size: 16px">{{ model.value }}</div>
+        </div>
+      </ng-template>
+
+      <ng-template #seriesTooltipTemplate let-model="model">
+        <div class="tooltip">
+          <div>{{ model[0].name | date:'yyyy-MM-dd hh:mm:ss' }}</div>
+          <div style="font-size: 16px">{{ model[0].value }}</div>
+        </div>
+      </ng-template>
+
+    </ngx-charts-area-chart>
+  </div>
+
+
   <ng-container *ngIf="dataService.sensorsData$ | async as data">
     <nz-table #table nzSize="middle" [nzData]="data">
       <thead>
         <tr>
           <th>Date</th>
           <th>Light (lux)</th>
+          <th>Soil Moisture</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of table.data">
           <td>{{ item.CreatedOn | date:'yyyy-MM-dd hh:mm:ss' }}</td>
           <td>{{ item.Light }}</td>
+          <td>{{ item.SoilMoisture }}</td>
         </tr>
       </tbody>
     </nz-table>
@@ -78,7 +113,7 @@
     xAxis="true"
     yAxis="true"
     yAxisLabel="%"
-    [results]="sashChartData"
+    [results]="sashlightChartData"
     autoScale="true"
     [trimXAxisTicks]="true"
     [maxXAxisTickLength]="16"

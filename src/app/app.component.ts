@@ -11,13 +11,14 @@ import { DataService } from './data.service';
 })
 export class AppComponent {
 
-  chartData: any;
+  lightChartData: any;
+  soilMoistureChartData: any;
 
   constructor(public dataService: DataService) {
 
     this.dataService.sensorsData$.subscribe(data => {
 
-      this.chartData = [{
+      this.lightChartData = [{
         name: 'Light (lux)',
         series: data.map(item => {
           return {
@@ -26,6 +27,16 @@ export class AppComponent {
           };
         })
       }];
-    })
+
+      this.soilMoistureChartData = [{
+        name: 'Soil Moisture',
+        series: data.map(item => {
+          return {
+            name: new Date(item.CreatedOn + 'Z'),
+            value: item.SoilMoisture || 0,
+          };
+        })
+      }];
+    });
   }
 }

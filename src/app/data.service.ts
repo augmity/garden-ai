@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { shareReplay, switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 import { SensorsData } from './models/SensorsData';
@@ -18,9 +18,15 @@ export class DataService {
   sensorsData$ = this.timePeriod$
     .pipe(
       switchMap(timePeriod => {
-        console.log('timePeriod', timePeriod);
         return this.http
           .get<SensorsData[]>(this.getUri + `&timePeriod=${timePeriod}`);
+      }),
+      map(data => {
+        const result = data.map(item => {
+          item.CreatedOn = new Date(item.CreatedOn + 'Z');
+          return item;
+        });
+        return result;
       }),
       shareReplay(1)
     );

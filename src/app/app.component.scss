@@ -5,30 +5,23 @@
 }
 
 header {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 16px;
-  padding-bottom: 0;
+  padding-bottom: 8px;
 
   h3 {
     margin: 0;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .anticon {
+    cursor: pointer;
   }
 }
 
 content {
   display: block;
   padding: 8px 16px;
-}
-
-.chart {
-  height: 300px;
-  margin-bottom: 32px;
-  margin-left: -8px;
-}
-
-.chart-legend {
-  margin: 0 16px;
-}
-
-time-period-selector {
-  margin: 4px 0 16px 0;
 }

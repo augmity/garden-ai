@@ -13,16 +13,21 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TimePeriodSelectorModule } from './time-period-selector';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ registerLocaleData(en);
     NzDividerModule,
     NzTableModule,
     NgxChartsModule,
+    NzIconModule,
     TimePeriodSelectorModule,
   ],
   providers: [

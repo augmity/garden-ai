@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 
-import { DataService } from './data.service';
+import { DataService } from '../data.service';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class AppComponent {
+export class HomeComponent {
 
   lightChartData: any;
   soilMoistureChartData: any;
@@ -19,22 +20,26 @@ export class AppComponent {
 
       this.lightChartData = [{
         name: 'Light (lux)',
-        series: data.map(item => {
-          return {
-            name: item.CreatedOn,
-            value: item.Light,
-          };
-        })
+        series: data
+          .filter(item => item.TriggeredBy === 'BH1750')
+          .map(item => {
+            return {
+              name: item.CreatedOn,
+              value: item.Light,
+            };
+          })
       }];
 
       this.soilMoistureChartData = [{
         name: 'Soil Moisture',
-        series: data.map(item => {
-          return {
-            name: item.CreatedOn,
-            value: item.SoilMoisture || 0,
-          };
-        })
+        series: data
+          .filter(item => item.TriggeredBy === 'YL69')
+          .map(item => {
+            return {
+              name: item.CreatedOn,
+              value: item.SoilMoisture || 0,
+            };
+          })
       }];
 
       const triggeredByCount: any = {};
